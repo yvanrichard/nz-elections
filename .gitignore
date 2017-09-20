@@ -4,4 +4,8 @@ electoral-votes.txt
 *.*~
 get-data/electoral-votes_ordinary-special.csv
 get-data/party-votes_ordinary-special.csv
-
+*.md
+*.spin.R
+*.spin.Rmd
+*.utf8.md
+*_files

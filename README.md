@@ -1,4 +1,4 @@
-# New Zealand elections results
+# New Zealand election results
 Results of past elections from electionresults.govt.nz
 
 

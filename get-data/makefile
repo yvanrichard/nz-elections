@@ -1,4 +1,9 @@
-all: party-votes_ordinary-special.csv electoral-votes_ordinary-special.csv .output
+all: .done
+
+
+.done: party-votes_ordinary-special.csv electoral-votes_ordinary-special.csv
+	touch .done
+
 
 electoral-votes.rds: electoral-votes-download.r
 	Rscript electoral-votes-download.r
@@ -12,5 +17,6 @@ party-votes.rds: party-votes-download.r
 party-votes_ordinary-special.csv: party-votes.rds party-votes-groom.r
 	Rscript party-votes-groom.r
 
-.output: party-votes_ordinary-special.csv electoral-votes_ordinary-special.csv
-	cp party-votes_ordinary-special.csv electoral-votes_ordinary-special.csv ../output/ && touch .output
+
+output: party-votes_ordinary-special.csv electoral-votes_ordinary-special.csv
+	cp party-votes_ordinary-special.csv electoral-votes_ordinary-special.csv ../output/
