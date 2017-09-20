@@ -1,4 +1,4 @@
-# nz-elections
+# New Zealand elections results
 Results of past elections from electionresults.govt.nz
 
 
@@ -19,7 +19,17 @@ and party, with the total number of votes, the number of ordinary
 votes and the number of special votes.
 
 
+## To run the scripts
 
+Dependencies: [R](https://www.r-project.org/), with additional
+packages
+[data.table](http://cran.stat.auckland.ac.nz/web/packages/data.table/index.html),
+[lubridate](http://cran.stat.auckland.ac.nz/web/packages/lubridate/index.html),
+[stringr](http://cran.stat.auckland.ac.nz/web/packages/stringr/index.html)
+
+To run the whole project at once, you need [GNU
+make](https://www.gnu.org/software/make/), and then just run `make` at
+the root of the project.
 
 
 

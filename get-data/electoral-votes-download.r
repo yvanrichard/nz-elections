@@ -1,4 +1,3 @@
-library(rvest, quietly = T)
 library(data.table, quietly = T)
 library(stringr, quietly = T)
 
