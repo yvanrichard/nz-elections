@@ -1,0 +1,7 @@
+party-votes.txt
+electoral-votes.txt
+*~
+*.*~
+get-data/electoral-votes_ordinary-special.csv
+get-data/party-votes_ordinary-special.csv
+
