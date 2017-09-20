@@ -37,6 +37,7 @@ electoralvotes[, party := gsub('New Zealand', 'NZ', party)]
 electoralvotes[party %in% c('NZ First', 'NZ First Party'), party := 'NZ First']
 electoralvotes[party %in% c('ACT NZ', 'ACT'), party := 'ACT']
 electoralvotes[party %in% c('Conservative Party', 'Conservative'), party := 'Conservative']
+electoralvotes[party %in% c('United Future', 'United Future NZ'), party := 'United Future']
 
 ## electoralvotes[, .(votes = sum(votes)), party][order(-votes)]
 
