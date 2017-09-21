@@ -39,6 +39,8 @@ PDF: analysis/special-votes/special-votes.pdf
 A shiny app is in the /shiny folder to explore how election results
 affect the number of seats in the New Zealand government.
 
+A version of it is [available online](https://dragonfly-science.shinyapps.io/nz_gov_sim)
+
 
 ## Dependencies
 
@@ -73,9 +75,5 @@ the root of the project.
 - [shiny](http://cran.stat.auckland.ac.nz/web/packages/shiny/index.html)
 - [shinydashboard](http://cran.stat.auckland.ac.nz/web/packages/shinydashboard/index.html)
 - [plotly](http://cran.stat.auckland.ac.nz/web/packages/plotly/index.html)
-
-
-
-
 
 

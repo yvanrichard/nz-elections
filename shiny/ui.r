@@ -34,7 +34,8 @@ function(request) {
                 h3('Find out how many seats each party would have in the New Zealand government'),
                 p('Change the importance sliders to get the desired percentages of party votes'),
                 p('Tick the checkbox if the party won at least one electorate (a party with less than 5% of votes is assumed to win only one electorate)'),
-                p('The numbers are initialised at the results of the 2014 election')
+                p('The numbers are initialised at the results of the 2014 election'),
+                p('For fine tuning, click on a slider then use the arrow keys of the keyboard')
                 ),
             box(title = 'Election results',
                 width = 4,
@@ -98,7 +99,8 @@ function(request) {
                 
             box(title = 'Parliament', width = 4,
                 hr(),
-                plotlyOutput('pie')
+                div(plotlyOutput("pie", height = "100%"), align = "center"),
+                textOutput('total_seats')
                 ),
             
             box(title = 'Potential coalitions', width = 4,

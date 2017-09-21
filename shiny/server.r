@@ -192,11 +192,19 @@ shinyServer(function(input, output, session) {
                             ) %>%
                     layout(title = 'Seats in NZ Parliament',
                            xaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE),
-                           yaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE))
+                           yaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE),
+                           margin = list(l = 0, r = 0, t = 30, b = 0))
 
                 p %>% config(displayModeBar = F)
 
             } else return(NULL)
+    })
+
+    output$total_seats <- renderText({
+        d <- parties()
+        if (!is.null(d)) {
+            return(sprintf('%i seats in total', sum(d$seats)))
+        }
     })
 
     ## Table of potential winning coalitions
@@ -214,13 +222,13 @@ shinyServer(function(input, output, session) {
             wins <- pairs[tot >= minseats]
             wins <- wins[!(party1 %in% c('National', 'Labour') & party2 %in% c('National', 'Labour'))]
             setorder(wins, -tot)
-            maxchar1 <- wins[, max(nchar(party1))]
-            maxchar2 <- wins[, max(nchar(party2))]
-            wins[, lab := sprintf(sprintf('%%%is - %%%is', maxchar1, maxchar2), party1, party2)]
-            wins[, seats := sprintf('%i seats', tot)]
             if (nrow(wins)) {
+                maxchar1 <- wins[, max(nchar(party1))]
+                maxchar2 <- wins[, max(nchar(party2))]
+                wins[, lab := sprintf(sprintf('%%%is - %%%is', maxchar1, maxchar2), party1, party2)]
+                wins[, seats := sprintf('%i seats', tot)]
                 return(wins[, .(lab, seats)])
-            }
+            } else return(data.frame('No possible coalitions'))
         }
     }, colnames = F)
     
