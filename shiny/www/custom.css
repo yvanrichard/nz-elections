@@ -259,9 +259,9 @@ label {
 }
 
 hr {
-    border-top: 1px solid #000;
-    margin-top: 15px;
-    margin-bottom: 15px;
+    border-top: 1px solid #ccc;
+    margin-top: 5px;
+    margin-bottom: 10px;
 }
 
 #runsims {
@@ -294,6 +294,7 @@ hr {
     padding-left: 5px;
     
 }
+
 
 table shiny-table table- {
     padding-bottom: 5px;
@@ -328,3 +329,35 @@ div.table-cell {
 #exec_summ_table {
     max-width: 600px;
 }
+
+
+.multicol{
+    font-size:12px;
+    height:auto;
+    -webkit-column-count: 2;
+    -moz-column-count: 2;
+    column-count: 2;
+}
+
+div.checkbox {
+    margin-top: 10px;
+}
+
+h3 {
+    margin-top: 5px;
+}
+
+div.shiny-text-output {
+    margin-top: 0px;
+    text-align: bottom;
+    line-height: 35px;
+    vertical-align: bottom;
+    text-align: center;
+}
+/* div.shiny-bound-output { */
+/*     margin-top: 0px; */
+/*     line-height: 200px; */
+/*     text-align: bottom; */
+/*     vertical-align: bottom; */
+/*     text-align: center; */
+/* } */
