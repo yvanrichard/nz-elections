@@ -105,9 +105,14 @@ function(request) {
             
             box(title = 'Potential coalitions', width = 4,
                 hr(),
-                p('List of pairs of parties that could form a majority government'),
+                p('List of coalitions that could form a majority government'),
                 p('Coalition Labour/National is assumed to be impossible'),
-                tableOutput('coalitions')
+                hr(),
+                HTML('<strong>Between two parties</strong>'),
+                tableOutput('coalitions_2'),
+                hr(),
+                HTML('<strong>Between three parties</strong>'),
+                tableOutput('coalitions_3')
                 ),
 
             box(title = 'Info', width = 4,
@@ -120,6 +125,10 @@ function(request) {
                 HTML('Source code <a href="https://github.com/yvanrichard/nz-elections">on GitHub</a>')
                 
                 )
+            ## ,box(title = 'Test',
+            ##      tableOutput('test')
+            ##      )
+
         )
     )
 }
