@@ -1,8 +1,15 @@
 # New Zealand election results
-Results of past elections from electionresults.govt.nz
+
+Results of past elections from electionresults.govt.nz and government
+simulator. 
+
+THIS IS A WORK IN PROGRESS.
 
 
-## Files
+## Data
+
+Past election results are fetched from electionresults.govt.nz,
+groomed, and formatted in a usable way.
 
 The created files can be found in the output/ folder.
 
@@ -19,17 +26,55 @@ and party, with the total number of votes, the number of ordinary
 votes and the number of special votes.
 
 
-## To run the scripts
+## Preliminary exploration
 
-Dependencies: [R](https://www.r-project.org/), with additional
-packages
-[data.table](http://cran.stat.auckland.ac.nz/web/packages/data.table/index.html),
-[lubridate](http://cran.stat.auckland.ac.nz/web/packages/lubridate/index.html),
-[stringr](http://cran.stat.auckland.ac.nz/web/packages/stringr/index.html)
+Characterisation of special votes and what to expect from the results
+on election day (they generally do not include special votes).
 
-To run the whole project at once, you need [GNU
+PDF: analysis/special-votes/special-votes.pdf
+
+
+## NZ government simulator
+
+A shiny app is in the /shiny folder to explore how election results
+affect the number of seats in the New Zealand government.
+
+
+## Dependencies
+
+1- To prepare the data:
+
+- [R](https://www.r-project.org/), with additional packages:
+- [data.table](http://cran.stat.auckland.ac.nz/web/packages/data.table/index.html)
+- [lubridate](http://cran.stat.auckland.ac.nz/web/packages/lubridate/index.html)
+- [stringr](http://cran.stat.auckland.ac.nz/web/packages/stringr/index.html)
+
+
+2- For the preliminary exploration:
+
+- [R](https://www.r-project.org/)
+- [data.table](http://cran.stat.auckland.ac.nz/web/packages/data.table/index.html)
+- [ggplot2](http://cran.stat.auckland.ac.nz/web/packages/ggplot2/index.html)
+- [knitr](http://cran.stat.auckland.ac.nz/web/packages/knitr/index.html)
+- [nzelect](http://cran.stat.auckland.ac.nz/web/packages/nzelect/index.html)
+- [pander](http://cran.stat.auckland.ac.nz/web/packages/pander/index.html)
+
+
+To prepare the data then create the PDF report at once, you need [GNU
 make](https://www.gnu.org/software/make/), and then just run `make` at
 the root of the project.
+
+
+3- For the shiny app:
+
+- [R](https://www.r-project.org/)
+- [data.table](http://cran.stat.auckland.ac.nz/web/packages/data.table/index.html)
+- [nzelect](http://cran.stat.auckland.ac.nz/web/packages/nzelect/index.html)
+- [shiny](http://cran.stat.auckland.ac.nz/web/packages/shiny/index.html)
+- [shinydashboard](http://cran.stat.auckland.ac.nz/web/packages/shinydashboard/index.html)
+- [plotly](http://cran.stat.auckland.ac.nz/web/packages/plotly/index.html)
+
+
 
 
 
