@@ -4,12 +4,8 @@
 
 library(data.table)
 library(shiny)
-## library(shinyjs)
 library(shinydashboard)
-## library(plotly)
-## library(DT)
-## library(V8)
-## library(rbokeh)
+library(plotly)
 addResourcePath('data', 'data')
 
 enableBookmarking(store = "url")
@@ -23,7 +19,7 @@ function(request) {
                      titleWidth = 300
                  ),
         
-        sidebar = dashboardSidebar(#width = '0%'
+        sidebar = dashboardSidebar(
             uiOutput('party'),
             uiOutput('electorate'),
             uiOutput('before_onday'),
@@ -46,12 +42,6 @@ function(request) {
                          column(6, uiOutput('group'))),
                 plotlyOutput('chart', height = '600px')),
                             
-            ## box(title = 'Parliament', width = 4,
-            ##     hr(),
-            ##     div(plotlyOutput("pie", height = "100%"), align = "center"),
-            ##     textOutput('total_seats')
-            ##     ),
-
             box(title = 'Info', width = 4,
                 hr(),
                 p('The data were sourced from electionresults.govt.nz'),
@@ -59,7 +49,7 @@ function(request) {
                 p('Created by Yvan Richard with R, Shiny, and Plotly'),
                 p('E-mail author: thefrenchstick<at>gmail.com'),
                 p(),
-                HTML('Source code <a href="https://github.com/yvanrichard/nz-elections/shiny/past-results">on GitHub</a>')
+                HTML('Source code <a href="https://github.com/yvanrichard/nz-elections">on GitHub</a>')
                 
                 )
 

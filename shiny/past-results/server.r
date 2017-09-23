@@ -13,7 +13,6 @@ options(scipen = 100)
 options(browser = 'google-chrome')
 
 
-
 getmainparties <- function(parties) {
     return(ifelse(parties == 'National Party', 'National',
         ifelse(parties == 'Labour Party', 'Labour',
@@ -181,150 +180,23 @@ shinyServer(function(input, output, session) {
                 dd[, col := clrs[z]]
                 
                 p <- plot_ly(dd, x = ~x, y = ~y, mode = 'lines+markers', color = ~z, colors = clrs
-                            ## , textposition = 'inside'
-                            ## , textinfo = 'label+value'
                           , hoverinfo = 'text'
-                            ## , insidetextfont = list(color = '#FFFFFF')
                           , text = ~sprintf('%s\n%s', z, round(y,1))
-                          ## , marker = list(color = col)
-                            ## , showlegend = F
-                            ## , dislayModeBar = F
                             ) %>%
                     layout(title = ''
                            , xaxis = list(title = 'Election year', showgrid = FALSE)
                            , yaxis = list(title = input$stat, showgrid = FALSE)
-                           ## , yaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE)
-                           ## , margin = list(l = 0, r = 0, t = 30, b = 0)
                            )
-                ## p
-                ## g
-                
-                ## p <- plot_ly(d, labels = ~party, values = ~seats, type = 'pie',
-                ##             textposition = 'inside',
-                ##             textinfo = 'label+value',
-                ##             hoverinfo = 'text',
-                ##             insidetextfont = list(color = '#FFFFFF'),
-                ##             text = ~sprintf('%s\n%0.1f %% party votes\n%i seats', party, p, seats),
-                ##             marker = list(colors = clrs),
-                ##             showlegend = F,
-                ##             dislayModeBar = F
-                ##             ) %>%
-                ##     layout(title = 'Seats in NZ Parliament',
-                ##            xaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE),
-                ##            yaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE),
-                ##            margin = list(l = 0, r = 0, t = 30, b = 0))
-
-                ## p %>% config(displayModeBar = F)
 
                 return(p)
             } else return(NULL)
             } else return(NULL)
     })
 
-    ## output$total_seats <- renderText({
-    ##     d <- parties()
-    ##     if (!is.null(d)) {
-    ##         return(sprintf('%i seats in total', sum(d$seats)))
-    ##     }
-    ## })
-
-    ## coalitions2 <- reactive({
-    ##     d <- parties()
-    ##     if (!is.null(d)) {
-    ##         ord <- d[order(p), party]
-    ##         minseats <- sum(d$seats) / 2
-
-    ##         ## 2-ways
-    ##         pairs <- CJ(party1 = d$party, party2 = d$party)
-    ##         pairs <- pairs[party1 != party2]
-    ##         pairs <- pairs[as.numeric(factor(party1, levels = ord)) > as.numeric(factor(party2, levels = ord))]
-    ##         pairs[, seats1 := d[match(party1, party), seats]]
-    ##         pairs[, seats2 := d[match(party2, party), seats]]
-    ##         pairs[, tot := seats1 + seats2]
-    ##         wins2 <- pairs[tot > minseats]
-    ##         wins2 <- wins2[!(party1 %in% c('National', 'Labour') & party2 %in% c('National', 'Labour'))]
-    ##         setorder(wins2, -tot)
-            
-    ##         if (nrow(wins2)) {
-    ##             maxchar1 <- wins2[, max(nchar(party1))]
-    ##             maxchar2 <- wins2[, max(nchar(party2))]
-    ##             wins2[, lab := sprintf(sprintf('%%%is - %%%is', maxchar1, maxchar2), party1, party2)]
-    ##             wins2[, seats := sprintf('%i seats', tot)]
-    ##         }
-    ##         return(wins2)
-    ##     }
+    ## output$test <- renderTable({
+    ##     data()
         
     ## })
-
-    ## coalitions3 <- reactive({
-    ##     d <- parties()
-    ##     if (!is.null(d)) {
-    ##         ord <- d[order(p), party]
-    ##         minseats <- sum(d$seats) / 2
-
-    ##         ## 3-ways
-    ##         triples <- CJ(party1 = d$party, party2 = d$party, party3 = d$party)
-    ##         triples <- triples[party1 != party2 & party2 != party3 & party1 != party3]
-    ##         triples <- triples[(as.numeric(factor(party1, levels = ord)) > as.numeric(factor(party2, levels = ord))) &
-    ##                           (as.numeric(factor(party2, levels = ord)) > as.numeric(factor(party3, levels = ord)))]
-    ##         triples[, seats1 := d[match(party1, party), seats]]
-    ##         triples[, seats2 := d[match(party2, party), seats]]
-    ##         triples[, seats3 := d[match(party3, party), seats]]
-    ##         triples[, tot := seats1 + seats2 + seats3]
-    ##         wins3 <- triples[tot > minseats]
-    ##         wins3 <- wins3[!apply(wins3, 1, function(x) 'National' %in% x & 'Labour' %in% x)]
-    ##         setorder(wins3, -tot)
-
-    ##         if (nrow(wins3)) {
-    ##             maxchar1 <- wins3[, max(nchar(party1))]
-    ##             maxchar2 <- wins3[, max(nchar(party2))]
-    ##             maxchar3 <- wins3[, max(nchar(party3))]
-    ##             wins3[, lab := sprintf(sprintf('%%%is - %%%is - %%%is', maxchar1, maxchar2, maxchar3), party1, party2, party3)]
-    ##             wins3[, seats := sprintf('%i seats', tot)]
-    ##         }
-    ##         return(wins3)
-    ##     }
-    ## })
-    
-    ## ## Table of potential winning coalitions
-    ## output$coalitions_2 <- renderTable({
-    ##     wins <- coalitions2()
-    ##     if (!is.null(wins)) {
-    ##         if (nrow(wins)) {
-    ##             return(wins[, .(lab, seats)])
-    ##         } else return(data.frame('No possible coalitions'))
-    ##     }
-    ## }, colnames = F)
-    
-    ## output$coalitions_3 <- renderTable({
-    ##     wins3 <- coalitions3()
-    ##     if (!is.null(wins3)) {
-    ##         if (nrow(wins3)) {
-    ##             ## Remove combinations with already a possible 2-way coalition
-    ##             wins2 <- coalitions2()
-    ##             if (!is.null(wins2)) {
-    ##                 if (nrow(wins2)) {
-    ##                     for (i in 1:nrow(wins2)) {
-    ##                         p1 <- wins2[i, party1]
-    ##                         p2 <- wins2[i, party2]
-    ##                         wins3 <- wins3[which(!apply(wins3[, .(party1, party2, party3)], 1, function(x) {p1 %in% x & p2 %in% x}))]
-    ##                     }
-    ##                 }
-    ##             }
-                
-    ##         }
-    ##         if (nrow(wins3)) {
-    ##             return(wins3[, .(lab, seats)])
-    ##         } else {
-    ##             return(data.frame('No further coalitions (three-party coalitions are not shown when a coalition between two of the parties is sufficient)'))
-    ##         }
-    ##     }
-    ## }, colnames = F)
-
-    output$test <- renderTable({
-        data()
-        
-    })
     
 })
 
