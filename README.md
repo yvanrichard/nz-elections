@@ -36,10 +36,18 @@ PDF: analysis/special-votes/special-votes.pdf
 
 ## NZ government simulator
 
-A shiny app is in the /shiny folder to explore how election results
+A shiny app is in the /shiny/nz_gov_sim folder to explore how election results
 affect the number of seats in the New Zealand government.
 
 A version of it is [available online](https://dragonfly-science.shinyapps.io/nz_gov_sim)
+
+
+## Past results exploration
+
+Another shiny app is in the /shiny/past_results folder to explore in
+detail the past election results in New Zealand.
+
+A version of it is [available online](https://dragonfly-science.shinyapps.io/nz_past_elections)
 
 
 ## Dependencies
