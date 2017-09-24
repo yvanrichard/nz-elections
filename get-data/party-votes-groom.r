@@ -48,12 +48,26 @@ partyvotes[, ordinary_special := ifelse(grepl('ordinary|^voting places|^polling 
 partyvotes[, before_onday := ifelse(grepl('before polling', category, ignore.case=T), 'advanced',
                              ifelse(grepl('on polling', category, ignore.case=T), 'normal',
                              ifelse(grepl('total', category, ignore.case=T), 'all', NA_character_)))]
+partyvotes[, local_overseas := ifelse(grepl('overseas', category, ignore.case=T), 'overseas', 'local')]
+partyvotes[grepl('less than|party only|hospital', category, ignore.case=T), before_onday := 'normal']
+partyvotes[grepl('overseas', category, ignore.case=T), before_onday := 'advanced']
 
 partyvotes[grepl('total$', category, ignore.case=T), category := 'total']
 
 ## ** Remove extra totals from parties
 partyvotes <- partyvotes[!grepl('party votes', party, ignore.case=T)]
 
+## ** Check that all categories are assigned
+if (sum(unlist(lapply(partyvotes, function(x) sum(is.na(x)))))>0)
+    stop('Some NAs in data')
+
+## ** Details
+longform <- partyvotes[category != 'total',
+                      .(votes = sum(votes)),
+                      .(year, electorate, party, ordinary_special, before_onday, local_overseas)]
+
+## ** Check that all categories have been assigned ordinary/special category
+stopifnot(partyvotes[, !any(is.na(ordinary_special))])
 
 ## ** Totals special VS ordinary
 partyvotes[ordinary_special %in% c('ordinary', 'special'),
@@ -65,6 +79,9 @@ special_votes <- dcast(special_votes, year + electorate + party ~ ordinary_speci
 fwrite(special_votes,
        'party-votes_ordinary-special.csv')
 
+fwrite(longform,
+       'party-votes_long.csv')
+
 ## ## ** Add missing combinations
 ## special_votes <- special_votes[special_votes[, CJ(year = unique(year), electorate=unique(electorate), party=unique(party))],
 ##                               on = c('year', 'electorate', 'party')]
@@ -72,7 +89,5 @@ fwrite(special_votes,
 ##     special_votes[is.na(get(v)), eval(v) := 0L]
 
 
-## ** Check that all categories have been assigned ordinary/special category
-stopifnot(partyvotes[, !any(is.na(ordinary_special))])
 
 
