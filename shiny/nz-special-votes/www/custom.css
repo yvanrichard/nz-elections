@@ -1,0 +1,363 @@
+@import url("https://fonts.googleapis.com/css?family=Asap|Open+Sans");
+/* html { */
+/*   font-family: sans-serif; */
+/*   -ms-text-size-adjust: 100%; */
+/*   -webkit-text-size-adjust: 100%; */
+/* } */
+/* h1, h2, h3, h4, h5, h6 { */
+/*   font-family: "Asap", serif; */
+/* } */
+
+/* .sidebar .shiny-input-container { */
+/*     padding: 50px 5px 5px 5px; */
+/*     white-space: normal; */
+/* } */
+
+/* .selectize-control { */
+/*     margin-bottom: 2px; */
+/*     margin-left: 2px; */
+/* } */
+
+/* .h6 { */
+/*   font-family: "Asap", serif; */
+/*   font-weight: 500; */
+/*   ## color: #2d2d2d; */
+/* } */
+/* h6, */
+/* .h6 { */
+/*   font-family: "Asap", serif; */
+/*   font-weight: 500; */
+/*   ## color: #2d2d2d; */
+/*   font-size: 14px; */
+/* } */
+/* .h5, h5 { */
+/*     font-size: 12px; */
+/* } */
+
+/* body { */
+/*     font-family: "Asap", serif; */
+/*     line-height: 12px; */
+/* }     */
+
+/* .main-header .logo { */
+/*       font-family: "Asap", serif; */
+/*       text-shadow: 2px 2px 2px #222; */
+/*       font-weight: bold; */
+/*       padding-left: 0px; */
+/*       padding-right: 0px; */
+/*       align: center; */
+/* } */
+
+/* .control-label { */
+/*     font-family: "Asap", serif; */
+/* } */
+
+/* .form-group { */
+/*     margin-bottom: 6px; */
+/* } */
+
+/* .h4, h4 { */
+/*     font-size: 16px; */
+/*     text-align: bottom; */
+/*     font-weight: bold; */
+/*     position: relative; */
+/*     bottom: -10px; */
+/* } */
+
+
+/* .h5, h5 { */
+/*     font-size: 16px; */
+/*     text-align: bottom; */
+/*     position: relative; */
+/* } */
+
+
+/* .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover { */
+/* 							color: #eee; */
+/* 							background-color: #2B8CBE; */
+/* 							border: 1px solid #aaa; */
+/* 						    } */
+/* .form-control { */
+/*     font-size: 14px; */
+/*     height: 25px; */
+/* } */
+
+/* img { */
+/*     border: 1; */
+/*     max-width: 100%; */
+/* } */
+/* element.style { */
+/*     width: 33.33%; */
+/* } */
+
+/* .col-sm-6 { */
+/*     padding-left: 5px; */
+/*     padding-right: 5px; */
+/* } */
+/* .col-sm-3 { */
+/*     padding-left: 5px; */
+/*     padding-right: 5px; */
+/* } */
+
+/* .col-sm-12 { */
+/*     padding-left: 5px; */
+/*     padding-right: 5px; */
+/* } */
+
+/* .col-sm-11 { */
+/*     padding-left: 2px; */
+/*     padding-right: 2px; */
+/* } */
+
+/* .vis-time-axis.vis-foreground { */
+/*     font-size: 10px; */
+/*     background-color: #EEEEEE; */
+/* } */
+/* .vis-foreground .vis-group { */
+/*     border-bottom-width: 0px; */
+/* } */
+/* .vis-item .vis-item-content { */
+/*     font-size: 12px; */
+/*     padding-top: 2px; */
+/*     padding-bottom: 2px; */
+/*     padding-left: 2px; */
+/*     padding-right: 2px; */
+/* } */
+
+
+/* /\* .vis-item .vis-box { *\/ */
+/* /\* } *\/ */
+
+/* .vis-item { */
+/*     top: 2px; */
+/* } */
+
+/* .vis-item .vis-item-overflow { */
+/*     overflow-x: visible; */
+/*     overflow-y: visible; */
+/* } */
+
+/* .vis-background .vis-minor.vis-odd { */
+/*   background: #ffd7d7; */
+/* } */
+/* .vis-timeline { */
+/*   background: #f4f4f4; */
+/* } */
+/* .vis-item.vis-dot { */
+/*   border-color: #FF7F00; */
+/* } */
+/* .vis-item.vis-line { */
+/*   border-color: #FF7F00; */
+/*   color: #FF7F00; */
+/* } */
+
+.skin-blue .sidebar a {
+    color: #444;
+    display: inline-block;
+    float: center;
+    text-align: center;
+    margin: 3px 2px 6px 15px;
+}
+
+/* .col-sm-12 { */
+/*     padding-left: 5px; */
+/*     padding-right: 5px; */
+/* } */
+
+/* .col-sm-2 { */
+/*     padding-left: 5px; */
+/*     padding-right: 5px; */
+/* } */
+
+/* .col-sm-6 { */
+/*     padding-left: 5px; */
+/*     padding-right: 5px; */
+/* } */
+/* .col-sm-3 { */
+/*     padding-left: 5px; */
+/*     padding-right: 5px; */
+/* } */
+
+/* .col-sm-11 { */
+/*     padding-left: 2px; */
+/*     padding-right: 2px; */
+/* } */
+
+.col-sm-11 {
+    padding-left: 2px;
+    padding-right: 2px;
+}
+
+.col-sm-7 {
+    padding-left: 2px;
+    padding-right: 2px;
+}
+
+.col-sm-6 {
+    padding-left: 2px;
+    padding-right: 2px;
+}
+
+col-sm-2 {
+    float: bottom;
+    padding-left: 2px;
+    padding-right: 2px;
+}
+
+.col-sm-4 {
+    padding-left: 2px;
+    padding-right: 2px;
+}
+
+
+body {
+    /* font-family: "Asap", serif; */
+    line-height: 12px;
+}
+
+.form-group {
+    margin-bottom: 6px;
+}
+.form-control {
+    font-size: 14px;
+    height: 25px;
+    padding: 4px 6px;
+}
+.navbar {
+    font-weight: 700;
+    font-size: 18px;
+}
+label {
+    font-weight: 500;
+}
+.box-title {
+    font-weight: 700;
+}
+
+.h5, h5 {
+    margin-top: 5px;
+    margin-bottom: 10px;
+		   
+}
+/* box-body { */
+/*     margin-top: 3px; */
+/*     margin-bottom: 3px; */
+    
+/* } */
+.box {
+    background: #fafafa;
+    box-shadow: 2px 2px 6px rgba(0,0,0,.1);
+    margin-bottom: 15px;
+}
+.btn {
+    box-shadow: 1px 1px 6px #000;
+}
+.selectize-input.full {
+    background-color: #f5f5f5;
+    font-size: 12px;
+    line-height: 10px;
+}
+
+hr {
+    border-top: 1px solid #ccc;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+#runsims {
+    background-color: #c00;
+    border-color: #700;
+    font-weight: 700;
+    color: #fff;
+    font-size: 16px;
+    float: right;
+    margin-bottom: 10px;
+}
+/* #result_file { */
+/*     font-size: 10px; */
+/*     line-height: 5px; */
+/* } */
+
+.row {
+    margin-right: -5px;
+    margin-left: -5px;
+}
+
+#tanks_ui_table {
+    font-size: 14px;
+    width: 100%;
+}
+
+
+.col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9 {
+    padding-right: 5px;
+    padding-left: 5px;
+    
+}
+
+
+table shiny-table table- {
+    padding-bottom: 5px;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+div.box-header {
+    padding-bottom: 5px;
+}
+div.box-body {
+    padding-top: 2px;
+}
+.table {
+    margin-bottom: 5px;
+    border-top-color: #fff;
+}
+div.table-cell {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+.table.shiny-table > tbody > tr > td {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+.shiny-table.spacing-s > thead > tr > th {
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 0px;
+}
+/* > thead > tr > th, .shiny-table.spacing-s > tbody > tr > th, .shiny-table.spacing-s > tfoot > tr > th, .shiny-table.spacing-s > thead > tr > td, .shiny-table.spacing-s > tbody > tr > td, .shiny-table.spacing-s > tfoot > tr > td */
+#exec_summ_table {
+    max-width: 600px;
+}
+
+
+.multicol{
+    font-size:12px;
+    height:auto;
+    -webkit-column-count: 2;
+    -moz-column-count: 2;
+    column-count: 2;
+}
+
+div.checkbox {
+    margin-top: 10px;
+}
+
+h3 {
+    margin-top: 5px;
+}
+
+div.shiny-text-output {
+    margin-top: 0px;
+    text-align: bottom;
+    line-height: 35px;
+    vertical-align: bottom;
+    text-align: center;
+}
+/* div.shiny-bound-output { */
+/*     margin-top: 0px; */
+/*     line-height: 200px; */
+/*     text-align: bottom; */
+/*     vertical-align: bottom; */
+/*     text-align: center; */
+/* } */
