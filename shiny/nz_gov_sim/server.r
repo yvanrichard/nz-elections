@@ -69,61 +69,61 @@ shinyServer(function(input, output, session) {
 #################
 
     output$national_w <- renderUI({
-        sliderInput("national_w", NULL, min = 0, max = 100, step = 0.01, value = pvote14['National', w], ticks = F)
+        sliderInput("national_w", NULL, label=NULL, min = 0, max = 100, step = 0.01, value = pvote14['National', w], ticks = F)
     })
     output$national_e <- renderUI({
         checkboxInput("national_e", NULL, value = T)
     })
     output$labour_w <- renderUI({
-        sliderInput("labour_w", NULL, min = 0, max = 100, step = 0.01, value = pvote14['Labour', w], ticks = F)
+        sliderInput("labour_w", NULL, label=NULL, min = 0, max = 100, step = 0.01, value = pvote14['Labour', w], ticks = F)
     })
     output$labour_e <- renderUI({
         checkboxInput("labour_e", NULL, value = T)
     })
     output$green_w <- renderUI({
-        sliderInput("green_w", NULL, min = 0, max = 100, step = 0.01, value = pvote14['Green', w], ticks = F)
+        sliderInput("green_w", NULL, label=NULL, min = 0, max = 100, step = 0.01, value = pvote14['Green', w], ticks = F)
     })
     output$green_e <- renderUI({
         checkboxInput("green_e", NULL, value = F)
     })
     output$nzfirst_w <- renderUI({
-        sliderInput("nzfirst_w", NULL, min = 0, max = 100, step = 0.01, value = pvote14['NZ First', w], ticks = F)
+        sliderInput("nzfirst_w", NULL, label=NULL, min = 0, max = 100, step = 0.01, value = pvote14['NZ First', w], ticks = F)
     })
     output$nzfirst_e <- renderUI({
         checkboxInput("nzfirst_e", NULL, value = F)
     })
     output$top_w <- renderUI({
-        sliderInput("top_w", NULL, min = 0, max = 100, step = 0.01, value = pvote14['TOP', w], ticks = F)
+        sliderInput("top_w", NULL, label=NULL, min = 0, max = 100, step = 0.01, value = pvote14['TOP', w], ticks = F)
     })
     output$top_e <- renderUI({
         checkboxInput("top_e", NULL, value = F)
     })
     output$maori_w <- renderUI({
-        sliderInput("maori_w", NULL, min = 0, max = 100, step = 0.01, value = pvote14['Maori', w], ticks = F)
+        sliderInput("maori_w", NULL, label=NULL, min = 0, max = 100, step = 0.01, value = pvote14['Maori', w], ticks = F)
     })
     output$maori_e <- renderUI({
         checkboxInput("maori_e", NULL, value = T)
     })
     output$act_w <- renderUI({
-        sliderInput("act_w", NULL, min = 0, max = 100, step = 0.01, value = pvote14['ACT', w], ticks = F)
+        sliderInput("act_w", NULL, label=NULL, min = 0, max = 100, step = 0.01, value = pvote14['ACT', w], ticks = F)
     })
     output$act_e <- renderUI({
         checkboxInput("act_e", NULL, value = T)
     })
     output$conserv_w <- renderUI({
-        sliderInput("conserv_w", NULL, min = 0, max = 100, step = 0.01, value = pvote14['Conservative', w], ticks = F)
+        sliderInput("conserv_w", NULL, label=NULL, min = 0, max = 100, step = 0.01, value = pvote14['Conservative', w], ticks = F)
     })
     output$conserv_e <- renderUI({
         checkboxInput("conserv_e", NULL, value = F)
     })
     output$ufuture_w <- renderUI({
-        sliderInput("ufuture_w", NULL, min = 0, max = 100, step = 0.01, value = pvote14['United Future', w], ticks = F)
+        sliderInput("ufuture_w", NULL, label=NULL, min = 0, max = 100, step = 0.01, value = pvote14['United Future', w], ticks = F)
     })
     output$ufuture_e <- renderUI({
         checkboxInput("ufuture_e", NULL, value = T)
     })
     output$other_w <- renderUI({
-        sliderInput("other_w", NULL, min = 0, max = 100, step = 0.01, value = pvote14['Other', w], ticks = F)
+        sliderInput("other_w", NULL, label=NULL, min = 0, max = 100, step = 0.01, value = pvote14['Other', w], ticks = F)
     })
     output$other_e <- renderUI({
         checkboxInput("other_e", NULL, value = F)
@@ -152,25 +152,25 @@ shinyServer(function(input, output, session) {
 
     ## Report back on % of party votes and the number of seats next to controls
     output$national_p <- renderText({if (!is.null(parties())) {parties()[party == 'National', sprintf('%0.1f %%', p)]}})
-    output$national_s <- renderText({if (!is.null(parties())) {parties()[party == 'National', sprintf('%i seats', seats)]}})
+    output$national_s <- renderText({if (!is.null(parties())) {parties()[party == 'National', sprintf('%i seat%s', seats, ifelse(seats>1, 's', ''))]}})
     output$labour_p <- renderText({if (!is.null(parties())) {parties()[party == 'Labour', sprintf('%0.1f %%', p)]}})
-    output$labour_s <- renderText({if (!is.null(parties())) {parties()[party == 'Labour', sprintf('%i seats', seats)]}})
+    output$labour_s <- renderText({if (!is.null(parties())) {parties()[party == 'Labour', sprintf('%i seat%s', seats, ifelse(seats>1, 's', ''))]}})
     output$green_p <- renderText({if (!is.null(parties())) {parties()[party == 'Green', sprintf('%0.1f %%', p)]}})
-    output$green_s <- renderText({if (!is.null(parties())) {parties()[party == 'Green', sprintf('%i seats', seats)]}})
+    output$green_s <- renderText({if (!is.null(parties())) {parties()[party == 'Green', sprintf('%i seat%s', seats, ifelse(seats>1, 's', ''))]}})
     output$nzfirst_p <- renderText({if (!is.null(parties())) {parties()[party == 'NZ First', sprintf('%0.1f %%', p)]}})
-    output$nzfirst_s <- renderText({if (!is.null(parties())) {parties()[party == 'NZ First', sprintf('%i seats', seats)]}})
+    output$nzfirst_s <- renderText({if (!is.null(parties())) {parties()[party == 'NZ First', sprintf('%i seat%s', seats, ifelse(seats>1, 's', ''))]}})
     output$top_p <- renderText({if (!is.null(parties())) {parties()[party == 'TOP', sprintf('%0.1f %%', p)]}})
-    output$top_s <- renderText({if (!is.null(parties())) {parties()[party == 'TOP', sprintf('%i seats', seats)]}})
+    output$top_s <- renderText({if (!is.null(parties())) {parties()[party == 'TOP', sprintf('%i seat%s', seats, ifelse(seats>1, 's', ''))]}})
     output$maori_p <- renderText({if (!is.null(parties())) {parties()[party == 'Maori', sprintf('%0.1f %%', p)]}})
-    output$maori_s <- renderText({if (!is.null(parties())) {parties()[party == 'Maori', sprintf('%i seats', seats)]}})
+    output$maori_s <- renderText({if (!is.null(parties())) {parties()[party == 'Maori', sprintf('%i seat%s', seats, ifelse(seats>1, 's', ''))]}})
     output$act_p <- renderText({if (!is.null(parties())) {parties()[party == 'ACT', sprintf('%0.1f %%', p)]}})
-    output$act_s <- renderText({if (!is.null(parties())) {parties()[party == 'ACT', sprintf('%i seats', seats)]}})
+    output$act_s <- renderText({if (!is.null(parties())) {parties()[party == 'ACT', sprintf('%i seat%s', seats, ifelse(seats>1, 's', ''))]}})
     output$conserv_p <- renderText({if (!is.null(parties())) {parties()[party == 'Conservative', sprintf('%0.1f %%', p)]}})
-    output$conserv_s <- renderText({if (!is.null(parties())) {parties()[party == 'Conservative', sprintf('%i seats', seats)]}})
+    output$conserv_s <- renderText({if (!is.null(parties())) {parties()[party == 'Conservative', sprintf('%i seat%s', seats, ifelse(seats>1, 's', ''))]}})
     output$ufuture_p <- renderText({if (!is.null(parties())) {parties()[party == 'United Future', sprintf('%0.1f %%', p)]}})
-    output$ufuture_s <- renderText({if (!is.null(parties())) {parties()[party == 'United Future', sprintf('%i seats', seats)]}})
+    output$ufuture_s <- renderText({if (!is.null(parties())) {parties()[party == 'United Future', sprintf('%i seat%s', seats, ifelse(seats>1, 's', ''))]}})
     output$other_p <- renderText({if (!is.null(parties())) {parties()[party == 'Other', sprintf('%0.1f %%', p)]}})
-    output$other_s <- renderText({if (!is.null(parties())) {parties()[party == 'Other', sprintf('%i seats', seats)]}})
+    output$other_s <- renderText({if (!is.null(parties())) {parties()[party == 'Other', sprintf('%i seat%s', seats, ifelse(seats>1, 's', ''))]}})
 
 
     ## Government pie
