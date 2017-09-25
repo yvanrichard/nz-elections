@@ -42,6 +42,15 @@ affect the number of seats in the New Zealand government.
 A version of it is [available online](https://dragonfly-science.shinyapps.io/nz_gov_sim)
 
 
+## Impact of special votes
+
+Another shiny app is in the /shiny/nz_special_votes folder to explore
+how the number of seats in the New Zealand government may change with
+the inclusion of special votes given the current results of the 2017 elections.
+
+A version of it is [available online](https://dragonfly-science.shinyapps.io/nz-special-votes)
+
+
 ## Past results exploration
 
 Another shiny app is in the /shiny/past_results folder to explore in

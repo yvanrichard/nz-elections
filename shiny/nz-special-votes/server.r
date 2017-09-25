@@ -12,67 +12,53 @@ library(plotly)
 options(scipen = 100)
 options(browser = 'google-chrome')
 
-
-## getmainparties <- function(parties) {
-##     return(ifelse(parties == 'National Party', 'National',
-##         ifelse(parties == 'Labour Party', 'Labour',
-##         ifelse(parties == 'Green Party', 'Green',
-##         ifelse(parties == 'New Zealand First Party', 'NZ First',
-##         ifelse(parties == 'Māori Party', 'Maori',
-##         ifelse(parties == 'The Opportunities Party (TOP)', 'TOP',
-##         ifelse(parties == 'ACT New Zealand', 'ACT',
-##         ifelse(parties == 'Conservative', 'Conservative',
-##         ifelse(parties == 'United Future', 'United Future',
-##                paste0('Other_', parties)))))))))))
-## }
-
 getmainparties <- function(parties) {
     return(ifelse(parties == 'National Party', 'National',
         ifelse(parties == 'Labour Party', 'Labour',
         ifelse(parties == 'Green Party', 'Green',
-        ifelse(parties == 'New Zealand First Party', 'NZ First',
-        ifelse(parties == 'Māori Party', 'Maori',
+        ifelse(parties %in% c('New Zealand First Party', 'NZ First'), 'NZ First',
+        ifelse(parties %in% c('Māori Party', 'Maori Party'), 'Maori',
         ifelse(parties == 'The Opportunities Party (TOP)', 'TOP',
-        ifelse(parties == 'ACT New Zealand', 'ACT',
+        ifelse(parties %in% c('ACT New Zealand', 'ACT'), 'ACT',
         ifelse(parties == 'Conservative', 'Conservative',
         ifelse(parties == 'United Future', 'United Future',
                'Other'))))))))))
 }
 
+sv <- fread('data/party-votes_ordinary-special.csv')
+sv[, mainparty := getmainparties(party)]
 
+sv14 <- sv[year == 2014, .(special_votes = sum(special)), mainparty]
+sv14[, p := 100 * special_votes / sum(special_votes)]
+setorder(sv14, -p)
 
 res <- fread('data/results_ordinary_2017.csv')
 
 bef <- fread('data/party-votes_long.csv')
-spec14 <- bef[ordinary_special == 'special' & year == 2014]
-spec14 <- spec14[, .(votes = sum(votes)), party]
+spec14all <- bef[ordinary_special == 'special' & year == 2014]
+spec14 <- spec14all[, .(votes = sum(votes)), party]
 spec14[, p := 100 * votes / sum(votes)]
 
-ren <- c('NZ First' = 'New Zealand First Party',
-        'ACT' = 'ACT New Zealand',
-        'Maori Party' = 'Māori Party')
 spec14[party == 'NZ First', party := 'New Zealand First Party']
 spec14[party == 'ACT', party := 'ACT New Zealand']
 spec14[party == 'Maori Party', party := 'Māori Party']
 
-res[spec14, votes_spec_14 := i.votes, on = 'party']
-
-res[party == 'MANA', votes_spec_14 := spec14[party == 'Internet MANA', votes/2]]
-res[party == 'Internet Party', votes_spec_14 := spec14[party == 'Internet MANA', votes/2]]
-res[is.na(votes_spec_14), votes_spec_14 := 0]
-## res[, p_votes_spec_14 := 100 * votes_spec_14 / sum(votes_spec_14)]
-## res[, party := getmainparties(party)]
-
 simplify <- function(res) {
-    s <- res[, .(votes = sum(votes), votes_spec_14 = sum(votes_spec_14), elec_seats = sum(elec_seats), tot_seats = sum(tot_seats)),
-            .(party=getmainparties(party))]
-    s[, p_spec := 100 * votes_spec_14 / sum(votes_spec_14)]
+    if (all(c('elec_seats', 'tot_seats') %in% names(res))) {
+        s <- res[, .(votes = sum(votes), elec_seats = sum(elec_seats), tot_seats = sum(tot_seats)),
+                .(party=getmainparties(party))]
+    } else {
+        s <- res[, .(votes = sum(votes)), .(party=getmainparties(party))]
+    }
     setorder(s, -votes)
     return(s)
 }
 
 res <- simplify(res)
-
+spec14 <- simplify(spec14)
+res[spec14, votes_spec_14 := i.votes, on = 'party']
+res[is.na(votes_spec_14), votes_spec_14 := 0]
+res[, p_spec := 100 * votes_spec_14 / sum(votes_spec_14)]
 setkey(res, party)
 
 res['National', w := 100.0]
@@ -81,7 +67,6 @@ for (i in 1:nrow(res)) {
     res[i, w := 100.0 * p_spec / pnat]
 }
 
-## setorder(res, -votes)
 
 cols <- c(Green           = '#008641',
          Labour          = '#D82C20',
@@ -99,7 +84,7 @@ debug <- FALSE
 
 enableBookmarking(store = "url")
 
-# input <- list(national_w = 47, labour_w = 25.1, green_w = 10.7, nzfirst_w = 8.7, top_w = 0, maori_w = 1.3, act_w = 0.7, conserv_w = 0.4, ufuture_w = 0.4, other_w = 6.5, national_e = T, labour_e = T, green_e = F, nzfirst_e = F, top_e = F, maori_e = T, act_e = T, other_e = T, conserv_e = F, ufuture_e = F, special_votes = 384072)
+# input <- list(national_w = res['National',w], labour_w = res['Labour',w], green_w = res['Green',w], nzfirst_w = res['NZ First',w], top_w = res['TOP',w], maori_w = res['Maori',w], act_w = res['ACT',w], conserv_w = res['Conservative',w], ufuture_w = res['United Future',w], other_w = res['Other',w], special_votes = 300915)
 
 
 shinyServer(function(input, output, session) {
@@ -158,10 +143,7 @@ shinyServer(function(input, output, session) {
                                        input$maori_w, input$act_w, input$conserv_w, input$ufuture_w, input$other_w)
                            )
             r <- copy(res)
-            ## d[, weights := 0]
-            ## if (all(d$weights == 0)) d[, weights := 0.0001]
             r[d, w_s := i.weights, on = 'party']
-            ## r[grepl('^Other', party), w_s := d[party == 'Other', weights]]
             if (!all(r$w_s == 0)) {
                 r[, p_s := 100 * w_s / sum(w_s)]
                 r[, v_s := input$special_votes * p_s / 100]

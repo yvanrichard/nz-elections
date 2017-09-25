@@ -4,12 +4,8 @@
 
 library(data.table)
 library(shiny)
-## library(shinyjs)
 library(shinydashboard)
 library(plotly)
-## library(DT)
-## library(V8)
-## library(rbokeh)
 addResourcePath('data', 'data')
 
 enableBookmarking(store = "url")
@@ -17,9 +13,9 @@ enableBookmarking(store = "url")
 function(request) {
 
     dashboardPage(
-        title = "NZ Government Simulator",
+        title = "Special votes impact",
         header = dashboardHeader(
-            title = 'NZ Government Simulator',
+            title = 'Special votes impact',
                      titleWidth = 300
                  ),
         
@@ -42,10 +38,9 @@ function(request) {
       .irs-slider {width: 10px; height: 20px; top: 9px;}
     "),
             box(width = 12,
-                h3('Find out how many seats each party would have in the New Zealand government'),
-                p('Change the importance sliders to get the desired percentages of party votes'),
-                p('Tick the checkbox if the party won at least one electorate (a party with less than 5% of votes is assumed to win only one electorate)'),
-                p('The numbers are initialised at the results of the 2014 election'),
+                h3('Find out how many seats each party would have in the New Zealand government when considering the special votes'),
+                p('Change the importance sliders to get the desired distribution of special votes'),
+                p('The current votes are from the initial results of the 2017 elections and do not include special votes. The special votes are distributed initially from the results of the 2014 elections'),
                 p('For fine tuning, click on a slider then use the arrow keys of the keyboard')
                 ),
             box(title = 'Election results',
@@ -53,9 +48,9 @@ function(request) {
                 hr(),
                 fluidRow(column(2, h5('No. special votes:'), offset = 4), column(2, uiOutput('special_votes'))),
                 fixedRow(column(2, h5('')),
-                         column(2, align='center', strong('Current'), hr()),
-                         column(4, align='center', strong('Specials'), hr()),
-                         column(4, align='center', strong('Total'), hr())),
+                         column(2, align='center', h4('Current'), hr()),
+                         column(4, align='center', h4('Specials'), hr()),
+                         column(4, align='center', h4('Total'), hr())),
                 fixedRow(column(2, h5('')),
                          column(1, align='center', strong('Votes')),
                          column(1, align='center', strong('Seats')),
@@ -189,7 +184,7 @@ function(request) {
 
             box(title = 'Info', width = 3,
                 hr(),
-                p('The relative importance is not a % of party votes. The % is calculated from the ratio of the importance to the sum of all importance values'),
+                p('The relative importance is not a percentage of special votes. The percentage is calculated from the ratio of the importance to the sum of all importance values'),
                 HTML('The calculation of the seats allocation is from Peter Ellis\'s <a href="https://github.com/ellisp/nzelect">nzelect</a> R package'),
                 hr(),
                 p('E-mail author: thefrenchstick<at>gmail.com'),
